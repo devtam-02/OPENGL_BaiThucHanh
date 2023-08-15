@@ -1,6 +1,9 @@
 ﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  InitShader.cpp
   example1.cpp
-  Generating Code...
-example1.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+E:\HAUI\HKPhu_2023_2\DoHoa\BaiTHso3_2_project_Cube\GLSLExperiment\example1.cpp(123,38): warning C4305: 'argument': truncation from 'double' to 'const GLfloat'
+E:\HAUI\HKPhu_2023_2\DoHoa\BaiTHso3_2_project_Cube\GLSLExperiment\example1.cpp(128,60): warning C4305: 'argument': truncation from 'double' to 'const GLfloat'
+E:\HAUI\HKPhu_2023_2\DoHoa\BaiTHso3_2_project_Cube\GLSLExperiment\example1.cpp(134,30): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+E:\HAUI\HKPhu_2023_2\DoHoa\BaiTHso3_2_project_Cube\GLSLExperiment\example1.cpp(135,31): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+E:\HAUI\HKPhu_2023_2\DoHoa\BaiTHso3_2_project_Cube\GLSLExperiment\example1.cpp(136,29): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+E:\HAUI\HKPhu_2023_2\DoHoa\BaiTHso3_2_project_Cube\GLSLExperiment\example1.cpp(137,30): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
   GLSLExperiment.vcxproj -> E:\HAUI\HKPhu_2023_2\DoHoa\BaiTHso3_2_project_Cube\Debug\GLSLExperiment.exe

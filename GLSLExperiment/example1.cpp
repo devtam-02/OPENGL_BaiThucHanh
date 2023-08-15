@@ -25,7 +25,10 @@ color4 colors[NumPoints]; /* Danh sách các màu tương ứng cho các đỉnh
 point4 vertices[8]; /* Danh sách 8 đỉnh của hình lập phương*/
 color4 vertex_colors[8]; /*Danh sách các màu tương ứng cho 8 đỉnh hình lập phương*/
 
-GLuint program;
+GLuint program, model_loc;
+mat4 model, model_ban;
+
+GLfloat xx = 0, yy = 0, zz = 0, a = 0, zn = 0;
 
 void initCube()
 {
@@ -110,15 +113,49 @@ void shaderSetup( void )
 	glEnableVertexAttribArray(loc_vColor);
 	glVertexAttribPointer(loc_vColor, 4, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(sizeof(points)));
 
+	model_loc = glGetUniformLocation(program, "Model");
+
+	glEnable(GL_DEPTH_TEST);
     glClearColor( 1.0, 1.0, 1.0, 1.0 );        /* Thiết lập màu trắng là màu xóa màn hình*/
 }
 
+void matBan() {
+	mat4 instance = Scale(1.2, 0.02, 0.6);
+	glUniformMatrix4fv(model_loc, 1, GL_TRUE, model * model_ban * instance);
+	glDrawArrays(GL_TRIANGLES, 0, NumPoints);
+}
+void chanBan(GLfloat x, GLfloat y, GLfloat z) {
+	mat4 instance = Translate(x, y, z) * Scale(0.06, 0.8, 0.06);
+	glUniformMatrix4fv(model_loc, 1, GL_TRUE, model* model_ban * instance);
+	glDrawArrays(GL_TRIANGLES, 0, NumPoints);
+}
+void thanBan() {
+	matBan();
+	chanBan(-0.57f, -0.41f, 0.27);
+	chanBan(-0.57f, -0.41f, -0.27);
+	chanBan(0.57f, -0.41f, 0.27);
+	chanBan(0.57f, -0.41f, -0.27);
+}
+void nganKeo() {
+	mat4 instance = Scale(0.54f, 0.02f, 0.6f) ;
+	glUniformMatrix4fv(model_loc, 1, GL_TRUE, model * model_ban * instance);
+	glDrawArrays(GL_TRIANGLES, 0, NumPoints);
+}
 
+void ban() {
+	GLfloat aa = DegreesToRadians * a;
+	model_ban = Translate(xx, yy, zz) * RotateY(aa);
+	thanBan();
+	model_ban = model_ban * Translate(0.0f, 0.0f, zn) * Translate(-0.27f, -0.15f, 0.0f);
+	nganKeo();
+}
 void display( void )
 {
-	
-    glClear( GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT );                
-    glDrawArrays( GL_TRIANGLES, 0, NumPoints );    /*Vẽ các tam giác*/
+    glClear( GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT );             
+	model = RotateX(-30) * RotateY(30);
+	//thanBan();
+	//nganKeo();
+	ban();
 	glutSwapBuffers();									   
 }
 
